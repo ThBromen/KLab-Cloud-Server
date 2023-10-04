@@ -18,6 +18,21 @@ let database = [
   },
 ];
 
+
+validateData = (data) => {
+  let message = "";
+  
+  if (!data.id) {
+    message = " id not found";
+  }
+  if (!data.title) {
+    message = "title  not found";
+  }
+  if (!data.body) {
+    message = "body not found";
+  }
+};
+
 app.get("/", (req, res) => {
   res.json(database);
   res.send("received sucessifuly");
@@ -46,15 +61,53 @@ app.post("/", (req, res) => {
   });
 });
 
-app.put("/", (req, res) => {
-  res.send("put request");
+
+
+app.put("/:id", (req, res) => {
+
+let id=parseInt(res.params.id);
+let data=req.body;
+let currentData=database.filter((x)=> x.id==id)[0];
+if(currentData){
+let isValid= validateDate(data);
+if(isValid=""){
+    currentData.id=data.id;
+    currentData.title=dat.title;
+    currentData.body=data.body;
+    res.status(200).send(database);
+}
+else{
+     res.statusMessage = isValid;
+     res.sendStatus(404);
+}
+
+}
+else{
+    res.statusMessage="data does not exist";
+    res.sendStatus(404);
+}
+  res.send(database);
 });
+
+
+
 
 app.patch("/", (req, res) => {n
   res.send("patch request");
 });
 
-app.delete("/", (req, res) => {
+app.delete("/:id", (req, res) => {
+  let id = req.params.id;
+  let currentData = database.filter((x) => x.id == id)[0];
+  if (currentData) {
+    database = database.filter((x) => x.id != id)[0];
+    res.statusMessage = "data deleted sucessifully";
+    res.sendStatus(200);
+  } else {
+    res.statusMessage = "data does not exist";
+    res.sendStatus(400);
+  }
+
   res.send("Delete request");
 });
 
