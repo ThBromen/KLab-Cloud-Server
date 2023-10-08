@@ -13,6 +13,7 @@ function  deleteElement(req, res) {
   database.splice(itemIndex, 1);
 
   res.status(204).send();
+  console.log("Data deleted successfully");
   
 };
 
