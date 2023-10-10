@@ -1,21 +1,11 @@
-const database = require("../../util/mocDatabase.js");
+import mongoose from "mongoose";
 
+import { NewsLetter } from "../../models";
 
-function  deleteElement(req, res) {
-  const itemId = parseInt(req.params.id);
-
-  const itemIndex = database.findIndex((item) => item.id === itemId);
-
-  if (itemIndex === -1) {
-    return res.status(404).json({ message: 'Item not found' });
-  }
-
-  database.splice(itemIndex, 1);
-
-  res.status(204).send();
-  console.log("Data deleted successfully");
-  
-};
-
-module.exports = deleteElement;
- 
+export const deleteElement= async(req, res)=> {
+  const requestId = req.params.id;
+  let data = await NewsLetter.findById({ _id:requestId });
+  console.log(data);
+  const result = await NewsLetter.deleteMany(data);
+  res.send(result);
+} 

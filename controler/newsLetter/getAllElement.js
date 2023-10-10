@@ -1,8 +1,8 @@
-const database = require("../../util/mocDatabase.js");
+import { NewsLetter } from "../../models";
 
-function getAll(req, res)
-{
-  res.status(200).json(database);
-  console.log(`Get all Data from database`);
-}
-module.exports= getAll; 
+export const getAll = async (req, res) => {
+  let data = await NewsLetter.find();
+  console.log(data);
+
+  res.status(200).json(data);
+};

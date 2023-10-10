@@ -1,8 +1,6 @@
-const express = require("express");
+import { Express } from "express";
 
-const logger = function(req,res,next){
+export const logger = (req,res,next)=>{
     console.log(res.body); 
     next();
-}
-
-module.exports = logger;
+};

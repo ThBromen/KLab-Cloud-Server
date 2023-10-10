@@ -1,11 +1,9 @@
-const database = require("../../util/mocDatabase.js");
+import { NewsLetter } from "../../models";
 
-function addElement(req, res) {
-  console.log(req.body);
-  database.push(req.body);
-
-  res.sendStatus(201).json({
-    message: "data created",
+export const addElement = async (req, res) => {
+  await NewsLetter.create(req.body);
+  console.log(res.body);
+  res.status(201).json({
+    message: "Newsletter created",
   });
 };
-module.exports = addElement;

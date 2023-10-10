@@ -13,4 +13,4 @@
      body: "no caption",
    },
  ];
-module.exports = database;
+export default database;

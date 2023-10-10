@@ -1,6 +1,6 @@
-const database = require("../../util/mocDatabase.js");
+import database from "../../util/mocDatabase";
 
-function updateElement(req, res){
+export const updateElement=(req, res)=>{
   const id = parseInt(req.params.id);
   const updatedData = req.body;
   const itemToUpdate = database.find((item) => item.id === id);
@@ -17,4 +17,3 @@ function updateElement(req, res){
   res.json({ message: "Item updated successfully", item: itemToUpdate });
 };
 
-module.exports = updateElement;
