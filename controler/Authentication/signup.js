@@ -1,6 +1,6 @@
-import {generateToken,hashpassword} from "../../util";
 import {User} from "../../Models";
 
+import {generateToken,hashPassword} from "../../util";
 export const signup = async (req,res) =>{
     try {
     const user = await User.findOne({ email: req.body.email });
@@ -9,7 +9,7 @@ export const signup = async (req,res) =>{
             message:"user of this email already exisite",
         });
     };
-    const hashedPassword =await  hashpassword(req.body.password);
+    const hashedPassword =await  hashPassword(req.body.password);
     req.body.password = hashedPassword;
     console.log("after hasshing password", req.body);
 

@@ -1,12 +1,11 @@
 import express from "express";
-import bodyParser from "body-parser";
 import "dotenv/config";
 
 const port= 6000;
 const app = express();
 import {logger} from "./middleware/logger.js";
 app.use(logger);
-app.use(bodyParser.json());
+app.use(express.json());
 let router = express.Router();
 import newsLettelRouter from "./routers/newsLetter.js";
 import authRouter from "./routers/authenticaion";
