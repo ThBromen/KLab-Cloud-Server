@@ -2,7 +2,7 @@
 import { User} from "../../Models";
 
  export const updateUser= async(req, res) =>{
-    // try {
+    try {
         const requestId= req.params.id;
         const updatedDoc = await User.findByIdAndUpdate(requestId, req.body, 
             { new: true, useFindAndModify: false });
@@ -11,8 +11,8 @@ import { User} from "../../Models";
         }
       
         res.json(updatedDoc);
-    //   } catch (err) {
-    //     console.error('Error updating:', err);
-    //     res.status(500).json({ error: 'Error updating document' });
-    //   }
+      } catch (err) {
+        console.error('Error updating:', err);
+        res.status(500).json({ error: 'Error updating document' });
+      }
 }
