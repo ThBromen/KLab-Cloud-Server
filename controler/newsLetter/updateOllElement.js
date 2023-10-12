@@ -1,12 +1,18 @@
 
-import { NewsLetter } from "../../models";
-
+import { NewsLetter } from "../../Models";
 
  export const updateOllElement= async(req, res) =>{
-const requestId= req.params.id;
-let data = await NewsLetter.findById({ _id:requestId });
- const result = await NewsLetter.updateOne({_id})
- console.log(result); 
-
- }
-
+    try {
+        const requestId= req.params.id;
+        const updatedDoc = await NewsLetter.findByIdAndUpdate(requestId, req.body, { new: true, useFindAndModify: false });
+      
+        if (!updatedDoc) {
+          return res.status(404).json({ error: 'Document not found' });
+        }
+      
+        res.json(updatedDoc);
+      } catch (err) {
+        console.error('Error updating document:', err);
+        res.status(500).json({ error: 'Error updating document' });
+      }
+}

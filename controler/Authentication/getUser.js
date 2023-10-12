@@ -1,7 +1,7 @@
-import { NewsLetter } from "../../Models";
+import {User} from "../../Models";
 
 export const getAll = async (req, res) => {
-  let data = await NewsLetter.find();
+  let data = await User.find();
   console.log(data);
 
   res.status(200).json(data);

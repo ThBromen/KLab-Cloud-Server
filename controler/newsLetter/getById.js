@@ -1,4 +1,4 @@
-import { NewsLetter } from "../../models";
+import { NewsLetter } from "../../Models";
 
 export const getOneElement= async(req, res)=>{
   let requestId = req.params.id;

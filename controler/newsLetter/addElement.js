@@ -1,4 +1,4 @@
-import { NewsLetter } from "../../models";
+import { NewsLetter } from "../../Models";
 
 export const addElement = async (req, res) => {
   await NewsLetter.create(req.body);

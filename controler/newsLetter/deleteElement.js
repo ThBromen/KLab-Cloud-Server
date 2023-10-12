@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-import { NewsLetter } from "../../models";
+import { NewsLetter } from "../../Models";
 
 export const deleteElement= async(req, res)=> {
   const requestId = req.params.id;
